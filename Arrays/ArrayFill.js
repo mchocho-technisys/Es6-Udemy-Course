@@ -7,5 +7,3 @@ console.log(numbers);
 //Si le pasamos valores negativos comienza del final
 numbers.fill(9, -2)
 console.log(numbers);
-
-//TODO: Mirar devuelta el video y agregar splice
