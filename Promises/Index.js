@@ -19,3 +19,47 @@ for (let i = 0; i < 10001; i++) {
 
 //Que es una Promesa?
 //Es un constructor que nos brinda ciertos metodos como, then, catch, All, race, resolve, reject
+
+//Recibe un argumento, un callback, donde el callback recibe un resolve y un reject
+
+//En este ejemplo simple es una funcion que quiero contar hasta 10 si me paso envío error con reject y si no lo paso por el resolve
+const max = 11;
+
+const promise = new Promise((resolve, reject) => {
+    console.log("Contemos");
+    setTimeout(() => {
+        for (let i = 1; i <= max; i++) {
+            console.log(i);
+            if (i === 11) {
+                reject("Llegué a 11");
+            }
+        }
+        resolve("Terminé de contar");
+    }, 1000);
+});
+
+console.log(promise.then((response) => {
+    console.log(response);
+}).catch((error) => {
+    console.log(error);
+}));
+
+console.log("Esperemos a que cuente");
+
+//El método all recibe un array de promises que espera a que se resuelvan todas para terminar
+const promise1 = new Promise((resolve, reject) => {
+    console.log("Promise 1");
+    resolve("Promise 1 resolve");
+});
+
+const promise2 = new Promise((resolve, reject) => {
+    console.log("Promise 2");
+    resolve("Promise 2 resolve");
+});
+
+const promisesArray = [promise1, promise2];
+
+Promise.all(promisesArray).then((data) => {
+    console.log("Se terminaron");
+    console.log(data);
+});
